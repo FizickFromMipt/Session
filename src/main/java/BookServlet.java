@@ -31,10 +31,12 @@ public class BookServlet extends HttpServlet {
             ResultSet resultSet = statement.executeQuery("select title from book");
 
             PrintWriter printWriter = response.getWriter();
+            printWriter.println("<html>");
             while (resultSet.next()) {
-                printWriter.println(resultSet.getString("title"));
+                System.out.println(resultSet.getString("title"));
+                printWriter.println("<p>"+resultSet.getString("title")+"</p>");
             }
-
+            printWriter.println("</html>");
             //подклюяение необходимо закрывать
             statement.close();
         } catch (SQLException | IOException e) {
